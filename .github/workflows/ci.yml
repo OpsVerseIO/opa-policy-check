@@ -1,0 +1,31 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  opa-action:
+    environment: stage
+    name: Check policy using Open Policy Agent (OPA)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Local Action
+        id: opa-action
+        uses: ./
+        with:
+          # opaServerUrl: ${{ vars.OPA_SERVER_URL }}
+          opaServerUrl: "https://opa-opsverse.int.devopsnow.io"
+          opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
+          opaServerInput: '{"input": null}'
+          opaServerPackageName: "example/include"
+          opaPolicyPath: "example/include"

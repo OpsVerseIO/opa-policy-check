@@ -1,0 +1,33 @@
+name: 'opa-action'
+description: 'A GitHub action that does OPA'
+author: 'OpsVerse (https://opsverse.io)'
+
+branding:
+  icon: 'activity'
+  color: 'green'
+
+inputs:
+  opaServerUrl:
+    description: 'OPA Serveer URL'
+    required: true
+    default: ''
+  opaServerAuthToken:
+    description: 'OPA Server Auth Token'
+    required: true
+    default: ''
+  opaServerInput:
+    description: 'OPA Server Input'
+    required: true
+    default: ''
+  opaServerPackageName:
+    description: 'OPA Server Package Name'
+    required: true
+    default: ''
+  opaPolicyPath:
+    description: 'OPA Policy Path'
+    required: true
+    default: ''
+
+runs:
+  using: node20
+  main: dist/index.js
