@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   opa-action:
-    environment: stage
     name: Check policy using Open Policy Agent (OPA)
     runs-on: ubuntu-latest
 
