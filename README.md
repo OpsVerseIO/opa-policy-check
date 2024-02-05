@@ -28,7 +28,7 @@ jobs:
           opaServerUrl: ${{ vars.OPA_SERVER }}
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
-          opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example.include`
+          opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
 ```
 
 NOTE: Following is a simple policy in the OPA server.
@@ -68,7 +68,7 @@ jobs:
           opaServerUrl: ${{ vars.OPA_SERVER }}
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
-          opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example.include`
+          opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
 ```
 
 NOTE: Following is a simple policy in the OPA server.
