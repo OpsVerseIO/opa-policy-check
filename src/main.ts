@@ -14,9 +14,9 @@ export async function run(): Promise<void> {
       'Content-Type': 'application/json'
     }
     core.info(`----------- OPA Server Details ----------`)
-    core.info(`URL: ${opaServerUrl}`)
-    core.info(`Server package name: ${opaServerUrl}`)
-    core.info(`Input to server: ${opaServerInput}`)
+    core.info(`🔗 URL: ${opaServerUrl}`)
+    core.info(`📋 Server package name: ${opaServerUrl}`)
+    core.info(`📥 Input to server: ${opaServerInput}`)
     core.info(`-----------------------------------------`)
 
     const response = await axios.post(
@@ -27,14 +27,17 @@ export async function run(): Promise<void> {
     if (response.status === 200) {
       const opaResponseObj = response.data as OpaResponse
       // core.info(`Response from OPA Server: ${JSON.stringify(opaResponseObj)}`)
-      console.log('Response from OPA Server: ', opaResponseObj)
+      console.log('📩📨 Response from OPA Server: ', opaResponseObj)
       if (!opaResponseObj.result.allow) {
-        core.setFailed(`Policy check failed`)
+        core.setFailed(`🛑⚠️❗ Policy check failed`)
         return
       }
-      core.info(`Policy check passed successfully`)
+      core.info('End OPA Policy Check')
+      core.info(`✅💚 Policy check passed successfully`)
     } else {
-      core.error(`Failed to trigger sync for application: ${opaServerUrl}`)
+      core.error(
+        `🛑⚠️❗ Policy check failed with status code: ${response.status}`
+      )
     }
   } catch (error) {
     // Fail the workflow run if an error occurs
