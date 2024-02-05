@@ -25,7 +25,7 @@ jobs:
       - name: Check policy using Open Policy Agent (OPA)
         uses: opsverse/opa-policy-check@0.1.0
         with:
-          opaServerUrl: ${{ vars.OPA_SERVER }}
+          opaServerUrl: "https://opa.example.com"
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
@@ -65,7 +65,7 @@ jobs:
       - name: Check policy using Open Policy Agent (OPA)
         uses: opsverse/opa-policy-check@0.1.0
         with:
-          opaServerUrl: ${{ vars.OPA_SERVER }}
+          opaServerUrl: "https://opa.example.com"
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
