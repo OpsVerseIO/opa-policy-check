@@ -1,10 +1,10 @@
-name: 'opa-action'
+name: 'opa-policy-check'
 description: 'A GitHub action that does OPA'
 author: 'OpsVerse (https://opsverse.io)'
 
 branding:
   icon: 'activity'
-  color: 'green'
+  color: 'white'
 
 inputs:
   opaServerUrl:

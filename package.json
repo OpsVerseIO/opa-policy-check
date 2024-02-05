@@ -1,5 +1,5 @@
 {
-    "name": "opa-action",
+    "name": "opa-policy-check",
     "description": "A GitHub Action that checks policies using Open Policy Agent (OPA)",
     "version": "0.1.0",
     "author": "OpsVerse",

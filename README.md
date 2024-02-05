@@ -1,4 +1,4 @@
-# Open Policy Agent (OPA) Action
+# Open Policy Agent (OPA) Policy Check Action
 
 [![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/actions/typescript-action/actions/workflows/ci.yml/badge.svg)
@@ -23,12 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@latest
       - name: Check policy using Open Policy Agent (OPA)
-        uses: opsverse/opa-action@0.1.0
+        uses: opsverse/opa-policy-check@0.1.0
         with:
           opaServerUrl: ${{ vars.OPA_SERVER }}
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example.include`
+```
+
+NOTE: Following is a simple policy in the OPA server.
+
+`include.rego`:
+```
+package example.include
+    allow := false
 ```
 
 ### Inputs
@@ -55,10 +63,18 @@ jobs:
     steps:
       - uses: actions/checkout@latest
       - name: Check policy using Open Policy Agent (OPA)
-        uses: opsverse/opa-action@0.1.0
+        uses: opsverse/opa-policy-check@0.1.0
         with:
           opaServerUrl: ${{ vars.OPA_SERVER }}
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example.include`
+```
+
+NOTE: Following is a simple policy in the OPA server.
+
+`include.rego`:
+```
+package example.include
+    allow := false
 ```
