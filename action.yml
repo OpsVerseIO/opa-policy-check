@@ -27,6 +27,10 @@ inputs:
     description: 'OPA Policy Path'
     required: true
     default: ''
+  skipTlsValidation:
+    description: 'Skip TLS validation. Get the data from OPA by ignoring the certificate.'
+    required: false
+    default: "false"
 
 runs:
   using: node20

@@ -23,12 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@latest
       - name: Check policy using Open Policy Agent (OPA)
-        uses: opsverse/opa-policy-check@0.1.0
+        uses: opsverse/opa-policy-check@0.2.0
         with:
           opaServerUrl: "https://opa.example.com"
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
+          skipTlsValidation: true # Skip TLS validation. Get the data from OPA by ignoring the certificate.
 ```
 
 NOTE: Following is a simple policy in the OPA server.
@@ -41,12 +42,13 @@ package example.include
 
 ### Inputs
 
-| Input                    | Description                                                                        |
-|--------------------------|------------------------------------------------------------------------------------|
-| `opaServerUrl`           | Open Policy Agent (OPA) Server address (with protocol)                             |
-| `opaServerAuthToken`     | Open Policy Agent (OPA) Auth token                                                 |
-| `opaServerInput`         | Open Policy Agent (OPA) input                                                      |
-| `opaServerPackageName`   | Open Policy Agent (OPA) package name from which the server should fetch the policy |
+| Input                    | Description                                                                             |
+|--------------------------|-----------------------------------------------------------------------------------------|
+| `opaServerUrl`           | Open Policy Agent (OPA) Server address (with protocol)                                  |
+| `opaServerAuthToken`     | Open Policy Agent (OPA) Auth token                                                      |
+| `opaServerInput`         | Open Policy Agent (OPA) input                                                           |
+| `opaServerPackageName`   | Open Policy Agent (OPA) package name from which the server should fetch the policy      |
+| `skipTlsValidation`      | Skip TLS validation. Get the data from OPA by ignoring the certificate (default = false)|
 
 ## Examples
 
@@ -69,6 +71,7 @@ jobs:
           opaServerAuthToken: ${{ secrets.OPA_SERVER_AUTH_TOKEN }}
           opaServerInput: '{"input": null}'
           opaServerPackageName: "example/include" # Package name to be given using `/` as the delimiter instead of `.`. For instance package `example.include` should be given as `example/include`
+          skipTlsValidation: true # Skip TLS validation. Get the data from OPA by ignoring the certificate.
 ```
 
 NOTE: Following is a simple policy in the OPA server.
