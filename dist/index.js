@@ -28233,12 +28233,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const axios = __nccwpck_require__(8757);
+const https_1 = __nccwpck_require__(5687);
 async function run() {
     try {
         const opaServerUrl = core.getInput('opaServerUrl');
         const opaServerAuthToken = core.getInput('opaServerAuthToken');
         const opaServerInput = core.getInput('opaServerInput');
         const opaServerPackageName = core.getInput('opaServerPackageName');
+        const skipTlsValidation = core.getInput('skipTlsValidation');
         const headers = {
             Authorization: `Bearer ${opaServerAuthToken}`,
             'Content-Type': 'application/json'
@@ -28248,7 +28250,15 @@ async function run() {
         core.info(`📋 Server package name: ${opaServerUrl}`);
         core.info(`📥 Input to server: ${opaServerInput}`);
         core.info(`-----------------------------------------`);
-        const response = await axios.post(`${opaServerUrl}/v1/data/${opaServerPackageName}`, { opaServerInput }, { headers });
+        const httpsAgent = new https_1.Agent({
+            rejectUnauthorized: skipTlsValidation ? false : true
+        });
+        skipTlsValidation
+            ? core.warning('❗🔓 Skip TLS Validation enabled. Please be careful while using this.')
+            : core.info('💚🔒 Skip TLS Validation disabled.');
+        const response = await axios
+            .create({ httpsAgent })
+            .post(`${opaServerUrl}/v1/data/${opaServerPackageName}`, { opaServerInput }, { headers });
         if (response.status === 200) {
             const opaResponseObj = response.data;
             // core.info(`Response from OPA Server: ${JSON.stringify(opaResponseObj)}`)
