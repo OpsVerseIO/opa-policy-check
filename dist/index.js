@@ -28258,7 +28258,9 @@ async function run() {
             : core.info('💚🔒 Skip TLS Validation disabled.');
         const response = await axios
             .create({ httpsAgent })
-            .post(`${opaServerUrl}/v1/data/${opaServerPackageName}`, { opaServerInput }, { headers });
+            .post(`${opaServerUrl}/v1/data/${opaServerPackageName}`, opaServerInput, {
+            headers
+        });
         if (response.status === 200) {
             const opaResponseObj = response.data;
             // core.info(`Response from OPA Server: ${JSON.stringify(opaResponseObj)}`)

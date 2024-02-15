@@ -32,11 +32,9 @@ export async function run(): Promise<void> {
 
     const response = await axios
       .create({ httpsAgent })
-      .post(
-        `${opaServerUrl}/v1/data/${opaServerPackageName}`,
-        { opaServerInput },
-        { headers }
-      )
+      .post(`${opaServerUrl}/v1/data/${opaServerPackageName}`, opaServerInput, {
+        headers
+      })
     if (response.status === 200) {
       const opaResponseObj = response.data as OpaResponse
       // core.info(`Response from OPA Server: ${JSON.stringify(opaResponseObj)}`)
